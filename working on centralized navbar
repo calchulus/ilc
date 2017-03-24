@@ -1,0 +1,78 @@
+<?php include("header.php"); ?>
+
+<div id="page-content">
+
+</div>
+
+<?php include("footer.php"); ?>
+
+
+
+<header id="fh5co-header-section" class="sticky-banner">
+			<div class="container">
+				<div class="nav-header">
+					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+					<h1 id="fh5co-logo"><a href="index.html">ILC - International Leadership Council</a></h1>
+					<!-- START #fh5co-menu-wrap -->
+					<nav id="fh5co-menu-wrap" role="navigation">
+						<ul class="sf-menu" id="fh5co-primary-menu">
+							<li ><a href="index.html">Home</a></li>
+							<li>
+								<a href="#" class="fh5co-sub-ddown">Divisions</a>
+								<ul class="fh5co-sub-menu">
+									<li><a href="#">Finance</a></li>
+									<li><a href="#">Entrepreneurship</a></li>
+									<li><a href="#">Tech</a></li>
+								</ul>
+							</li>
+							<li><a href="members.html">Members</a></li>
+                            
+							<li><a href="https://medium.com/ilcuchicago">Blog</a></li>
+							<li class="active"><a href="events.html">Events</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+
+
+<script>
+liClicked = false;
+var navID = '#TopNav'; //Pass here the ID of navigation
+$(window).scroll(function(){
+    var y = $(this).scrollTop();
+    var top = $(window).scrollTop();
+    var body = $("html, body");
+ 
+    if(top >=0){
+        $(navID).addClass('show');
+    }else{
+        $(navID).removeClass('show');
+    }
+ 
+    $(navID+' li[id]').each(function () {
+        var id = $(this).attr('id');
+        var viewPort = $('.'+id).offset().top;
+        if (y >= viewPort) {
+            if (!liClicked) {
+                $(navID+' li').not(this).removeClass('active');
+                $(this).addClass('active');
+            }
+        }
+    });
+});
+ 
+$(navID+' li').click(function(){
+    var attr = $(this).attr('id');
+    var divPosition = $('.'+attr).offset();
+    if(attr){
+        $('html, body').animate({
+            scrollTop: divPosition.top-90
+        }, 500);
+        $(navID+' li').removeClass('active');
+        $(this).addClass('active');
+    }
+    return false;
+});
+</script>
